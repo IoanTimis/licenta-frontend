@@ -16,8 +16,6 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const { translate } = useLanguage();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
-  console.log("API URL:", apiUrl);
-  console.log("Debug");
 
   const handleLogin = async (e) => {
     e.preventDefault();
