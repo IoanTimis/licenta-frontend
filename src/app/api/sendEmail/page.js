@@ -4,10 +4,11 @@ import nodemailer from "nodemailer";
 import { generateEmailContent } from "@/utils/templateEmail";
 
 export async function sendEmail(data) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const { to, title, actionMakerEmail, status, message, subject, role, language } = data;
   console.log("sendMailPAge: ",data.link);
 
-  let link = data.link || "http://localhost:3000/";
+  let link = data.link || apiUrl;
 
   console.log("Link generated SendEmailPAge:", link);
 

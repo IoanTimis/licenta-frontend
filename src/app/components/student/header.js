@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { HomeIcon, AcademicCapIcon, HeartIcon, UserIcon, NewspaperIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 
 export default function studentNavBar() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { language, setLanguage, translate } = useLanguage();
@@ -30,7 +31,7 @@ export default function studentNavBar() {
 
   const logout = async () => {
     try {
-      await axios.get("http://localhost:8080/logout", { withCredentials: true });
+      await axios.get(`${apiUrl}/logout`, { withCredentials: true });
 
       router.push("/auth/login");
       dispatch(clearUser());

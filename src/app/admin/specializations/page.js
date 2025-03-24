@@ -9,6 +9,7 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import ConfirmActionModal from "@/app/components/admin/confirm-action-modal";
 
 export default function AdminFacultiesPage() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [faculties, setFaculties] = useState([]);
   const [specializations, setSpecializations] = useState([]);
   const [loading, setLoading] = useState(null);
@@ -24,7 +25,7 @@ export default function AdminFacultiesPage() {
   const fetchSpecializations = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get("http://localhost:8080/admin/specializations", { withCredentials: true });
+      const response = await axiosInstance.get(`${apiUrl}/admin/specializations`, { withCredentials: true });
       setSpecializations(response.data.specializations);
       setFaculties(response.data.faculties);
     } catch (error) {
@@ -56,7 +57,7 @@ export default function AdminFacultiesPage() {
 
   const deleteSpecialization = async (specialization) => {
     try {
-      await axiosInstance.delete(`http://localhost:8080/admin/specialization/delete/${specialization.id}`, { withCredentials: true });
+      await axiosInstance.delete(`${apiUrl}/admin/specialization/delete/${specialization.id}`, { withCredentials: true });
       fetchSpecializations();
     } catch (error) {
       console.error("Delete specialization error:", error);

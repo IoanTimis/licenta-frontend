@@ -17,13 +17,13 @@ export default function SpecializationForm({ specialization, onClose, onSave, fa
 
     try {
       if (specialization) {
-        await axiosInstance.put(`http://localhost:8080/admin/specialization/edit/${specialization.id}`, {
+        await axiosInstance.put(`${apiUrl}/admin/specialization/edit/${specialization.id}`, {
           name,
           description,
           faculty_id: facultyId,
         }, { withCredentials: true });
       } else {
-        await axiosInstance.post("http://localhost:8080/admin/specialization/add", {
+        await axiosInstance.post(`${apiUrl}/admin/specialization/add`, {
           name,
           description,
           faculty_id: facultyId,

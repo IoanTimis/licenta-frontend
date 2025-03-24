@@ -9,6 +9,7 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import ConfirmActionModal from "@/app/components/admin/confirm-action-modal";
 
 export default function AdminFacultiesPage() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [faculties, setFaculties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,7 +24,7 @@ export default function AdminFacultiesPage() {
   const fetchFaculties = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get("http://localhost:8080/admin/faculties", { withCredentials: true });
+      const response = await axiosInstance.get(`${apiUrl}/admin/faculties`, { withCredentials: true });
       setFaculties(response.data);
     } catch (error) {
       console.error("Fetch faculties error:", error);
@@ -55,7 +56,7 @@ export default function AdminFacultiesPage() {
 
   const deleteFaculty = async (faculty) => {
     try {
-      await axiosInstance.delete(`http://localhost:8080/admin/faculty/delete/${faculty.id}`, { withCredentials: true });
+      await axiosInstance.delete(`${apiUrl}/auth/google/admin/faculty/delete/${faculty.id}`, { withCredentials: true });
       fetchFaculties();
     } catch (error) {
       console.error("Delete faculty error:", error);

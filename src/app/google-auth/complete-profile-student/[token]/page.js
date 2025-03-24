@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { useLanguage } from "@/context/Languagecontext";
 
 export default function CompleteProfileStudent() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [successMessage, setSuccessMessage] = useState(null); 
   const [formVisible, setFormVisible] = useState(true);
   const [faculties, setFaculties] = useState([]);
@@ -33,7 +34,7 @@ export default function CompleteProfileStudent() {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/complete-profile/as-student/${token}`,
+        `${apiUrl}/complete-profile/as-student/${token}`,
         { faculty_id, specialization_id, education_level },
         { withCredentials: true }
       );
@@ -68,7 +69,8 @@ export default function CompleteProfileStudent() {
     const fetchFaculties = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/fetch/faculties-specializations"
+          `${apiUrl}/fetch/faculties-specializations`,
+          { withCredentials: true }
         );
         setFaculties(response.data);
       } catch (error) {

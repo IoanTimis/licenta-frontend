@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axiosInstance from "@/utils/axiosInstance";
 
 export default function FacultyForm({ faculty, onClose, onSave }) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [name, setName] = useState(faculty?.name || "");
   const [description, setDescription] = useState(faculty?.description || "");
   const [loading, setLoading] = useState(false);
@@ -16,12 +17,12 @@ export default function FacultyForm({ faculty, onClose, onSave }) {
 
     try {
       if (faculty) {
-        await axiosInstance.put(`http://localhost:8080/admin/faculty/edit/${faculty.id}`, {
+        await axiosInstance.put(`${apiUrl}/admin/faculty/edit/${faculty.id}`, {
           name,
           description,
         }, { withCredentials: true });
       } else {
-        await axiosInstance.post("http://localhost:8080/admin/faculty/add", {
+        await axiosInstance.post(`${apiUrl}/admin/faculty/add`, {
           name,
           description,
         }, { withCredentials: true });

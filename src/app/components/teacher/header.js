@@ -28,7 +28,7 @@ export default function TeacherNavBar() {
 
   const logout = async () => {
     try {
-      await axios.get("http://localhost:8080/logout", { withCredentials: true });
+      await axios.get(`${apiUrl}/logout`, { withCredentials: true });
 
       router.push("/auth/login");
       dispatch(clearUser());

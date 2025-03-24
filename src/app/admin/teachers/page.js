@@ -9,6 +9,7 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import ConfirmActionModal from "@/app/components/admin/confirm-action-modal";
 
 export default function AdminTeacherspage() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
@@ -23,7 +24,7 @@ export default function AdminTeacherspage() {
   const fetchTeachers = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get("http://localhost:8080/admin/teachers", { withCredentials: true });
+      const response = await axiosInstance.get(`${apiUrl}/admin/teachers`, { withCredentials: true });
       setTeachers(response.data);
     } catch (error) {
       console.error("Fetch teachers error:", error);
@@ -55,7 +56,7 @@ export default function AdminTeacherspage() {
 
   const deleteTeacher = async (teacher) => {
     try {
-      await axiosInstance.delete(`http://localhost:8080/admin/teacher/delete/${teacher.id}`, { withCredentials: true });
+      await axiosInstance.delete(`${apiUrl}/admin/teacher/delete/${teacher.id}`, { withCredentials: true });
       fetchTeachers();
     } catch (error) {
       console.error("Delete teacher error:", error);

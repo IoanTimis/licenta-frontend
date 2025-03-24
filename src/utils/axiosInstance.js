@@ -4,7 +4,7 @@ import { setUser, clearUser } from "@/store/features/user/userSlice";
 import { jwtDecode } from "jwt-decode";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://licenta-backend-production.up.railway.app",
   withCredentials: true,
 });
 
@@ -29,7 +29,7 @@ axiosInstance.interceptors.response.use(
 
       try {
         const response = await axios.post(
-          "http://localhost:8080/refresh",
+          `${apiUrl}/refresh`,
           {},
           { withCredentials: true }
         );

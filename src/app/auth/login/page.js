@@ -11,6 +11,7 @@ import { ErrorContext } from "@/context/errorContext";
 import { useContext } from "react";
 
 const LoginPage = () => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
   const dispatch = useDispatch();
   const { translate } = useLanguage();
@@ -25,7 +26,7 @@ const LoginPage = () => {
     try {
       console.log("email", email);
       const response = await axios.post(
-        "http://localhost:8080/login",
+        `${apiUrl}/login`,
         { email, password },
         { withCredentials: true } 
       );
@@ -50,7 +51,7 @@ const LoginPage = () => {
 
   const handleGoogleLogin = (e) => {
     e.preventDefault();
-    window.location.href = "http://localhost:8080/auth/google";
+    window.location.href = `${apiUrl}/auth/google`;
   };
 
   return (

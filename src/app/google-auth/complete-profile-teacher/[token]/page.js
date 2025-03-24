@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { useLanguage } from "@/context/Languagecontext";
 
 export default function CompleteProfileTeacher() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [successMessage, setSuccessMessage] = useState(null); 
   const [formVisible, setFormVisible] = useState(true);
   const { setGlobalErrorMessage } = useContext(ErrorContext);
@@ -28,7 +29,7 @@ export default function CompleteProfileTeacher() {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/complete-profile/as-teacher/${token}`,
+        `${apiUrl}/complete-profile/as-teacher/${token}`,
         { title },
         { withCredentials: true }
       );

@@ -9,6 +9,7 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import ConfirmActionModal from "@/app/components/admin/confirm-action-modal";
 
 export default function AdminUsersPage() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [users, setUsers] = useState([]);
   const [faculties, setFaculties] = useState([]);
   const [loading, setLoading] = useState(null);
@@ -24,7 +25,7 @@ export default function AdminUsersPage() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get("http://localhost:8080/admin/users", { withCredentials: true });
+      const response = await axiosInstance.get(`${apiUrl}/admin/users`, { withCredentials: true });
       setFaculties(response.data.faculties);
       setUsers(response.data.users);
     } catch (error) {
@@ -57,7 +58,7 @@ export default function AdminUsersPage() {
 
   const deleteUser = async (user) => {
     try {
-      await axiosInstance.delete(`http://localhost:8080/admin/user/delete/${user.id}`, { withCredentials: true });
+      await axiosInstance.delete(`${apiUrl}admin/user/delete/${user.id}`, { withCredentials: true });
       fetchUsers();
     } catch (error) {
       console.error("Delete user error:", error);

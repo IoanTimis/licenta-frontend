@@ -4,6 +4,7 @@ import { useState } from "react";
 import axiosInstance from "@/utils/axiosInstance";
 
 export default function TeacherForm({ teacher, onClose, onSave }) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [email, setEmail] = useState(teacher?.email || "");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,11 +17,11 @@ export default function TeacherForm({ teacher, onClose, onSave }) {
 
     try {
       if (teacher) {
-        await axiosInstance.put(`http://localhost:8080/admin/teacher/edit/${teacher.id}`, {
+        await axiosInstance.put(`${apiUrl}/admin/teacher/edit/${teacher.id}`, {
           email,
         }, { withCredentials: true });
       } else {
-        await axiosInstance.post("http://localhost:8080/admin/teacher/add", {
+        await axiosInstance.post(`${apiUrl}/admin/teacher/add`, {
           email,
         }, { withCredentials: true });
       }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axiosInstance from "@/utils/axiosInstance";
 
 export default function UserForm({ user, onClose, onSave, faculties }) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [firstName, setFirstName] = useState(user?.first_name || "");
   const [lastName, setLastName] = useState(user?.name || "");
   const [email, setEmail] = useState(user?.email || "");
@@ -49,9 +50,9 @@ export default function UserForm({ user, onClose, onSave, faculties }) {
       }
 
       if (user) {
-        await axiosInstance.put(`http://localhost:8080/admin/user/edit/${user.id}`, userData, { withCredentials: true });
+        await axiosInstance.put(`${apiUrl}/admin/user/edit/${user.id}`, userData, { withCredentials: true });
       } else {
-        await axiosInstance.post("http://localhost:8080/admin/user/add", userData, { withCredentials: true });
+        await axiosInstance.post(`${apiUrl}/admin/user/add`, userData, { withCredentials: true });
       }
 
       onSave();

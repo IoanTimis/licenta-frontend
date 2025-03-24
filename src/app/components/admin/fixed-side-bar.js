@@ -18,6 +18,7 @@ import { useContext } from "react";
 import { usePathname } from "next/navigation";
 
 export default function FixedSidebar() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const dispatch = useDispatch();
   const router = useRouter();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
@@ -25,7 +26,7 @@ export default function FixedSidebar() {
 
   const logout = async () => {
     try {
-      await axios.get("http://localhost:8080/logout", { withCredentials: true });
+      await axios.get(`${apiUrl}/logout`, { withCredentials: true });
 
       dispatch(clearUser());
       localStorage.removeItem("accessToken");
