@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
 import { useLanguage } from "@/context/Languagecontext";
+import { useState } from "react";
 
 export default function TeacherLayout({ children }) {
   const router = useRouter();
