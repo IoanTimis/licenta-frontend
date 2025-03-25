@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { usePathname } from "next/navigation";
 
 export default function TeacherNavBar() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { language, setLanguage, translate } = useLanguage();
