@@ -189,6 +189,14 @@ export default function StudentRequests() {
     }
   };
 
+  if(loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 p-8">
+        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
+      </div>
+    );
+  }
+
   if(requests.length === 0) {
     return (
       <div className="min-h-screen bg-gray-100 p-8">
@@ -208,7 +216,6 @@ export default function StudentRequests() {
 
       <div className="lg:w-3/4 w-full p-4 flex-grow">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 gap-y-6">
-          {loading && <p className="text-center text-gray-700">{translate("Loading...")}</p>}
           {filteredRequests.map((request) => (
             <div key={request.id}> 
               <RequestCard 
