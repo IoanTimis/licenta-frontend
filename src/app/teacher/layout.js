@@ -5,13 +5,10 @@ import { useRouter, usePathname } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
-import { useLanguage } from "@/context/Languagecontext";
-import { useState } from "react";
 
 export default function TeacherLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { translate } = useLanguage();
   const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
@@ -27,12 +24,11 @@ export default function TeacherLayout({ children }) {
       const decoded = jwtDecode(accessToken);
 
       if (decoded.role !== "teacher") {
-        return (
-          <div>
-            <h1>{translate("Access Denied")}</h1>
-          </div>
-        );
+        alert("Acces interzis");
+        console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
+        router.push(`/${decoded.role}`);
       }
+
     } catch (error) {
       console.error("Invalid token:", error);
       localStorage.removeItem("accessToken");
