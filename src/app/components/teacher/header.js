@@ -184,12 +184,12 @@ export default function TeacherNavBar() {
                   className="absolute right-0 top-12 w-48 bg-white border rounded-md shadow-lg"
                   style={{ zIndex: 50 }}
                 >
-                  <Link
+                  {/* <Link
                     href="/profile"
                     className="block px-4 py-2 text-gray-600 hover:text-black"
                   >
                     {translate("Profile")}
-                  </Link>
+                  </Link> */}
                   <button
                     onClick={logout}
                     className="block w-full text-left px-4 py-2 text-gray-600 hover:text-black"

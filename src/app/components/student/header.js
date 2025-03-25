@@ -179,13 +179,13 @@ export default function studentNavBar() {
                   className="absolute right-0 top-12 w-48 bg-white border rounded-md shadow-lg"
                   style={{ zIndex: 50 }}
                 >
-                  <Link
+                  {/* <Link
                     href="/profile"
                     className={`block w-full text-left px-4 py-2 text-gray-600 hover:text-black 
                       ${pathname === "/profile" ? "border-b border-black" : ""}`}
                   >
                     {translate("Profile")}
-                  </Link>
+                  </Link> */}
                   <button
                     onClick={logout}
                     className="block w-full text-left px-4 py-2 text-gray-600 hover:text-black"
