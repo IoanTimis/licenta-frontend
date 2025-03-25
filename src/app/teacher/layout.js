@@ -25,7 +25,6 @@ export default function TeacherLayout({ children }) {
       const decoded = jwtDecode(accessToken);
 
       if (decoded.role !== "teacher") {
-        alert("Acces interzis");
         console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
         router.push(`/${decoded.role}`);
       }
