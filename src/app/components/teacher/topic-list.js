@@ -49,7 +49,7 @@ const TopicList = ({ topics, loading, handleEditData, handleAddData, handleOpenC
         </div>
 
         {/* Loading Indicator */}
-        {loading && <div className="text-center text-gray-700">Se încarcă...</div>}
+        {loading && <div className="text-center text-gray-700">{translate("Loading...")}</div>}
 
         {/* Topic Cards */}
         {topics.map((topic) => (

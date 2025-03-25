@@ -12,9 +12,11 @@ export default function MyStudents() {
   const { translate } = useLanguage();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const [noMatch, setNoMatch] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axiosInstance.get("/teacher/fetch/my-students", { withCredentials: true });
         setStudents(response.data.students);
@@ -22,6 +24,8 @@ export default function MyStudents() {
       } catch (error) {
         console.error("Error fetching students:", error);
         setGlobalErrorMessage(translate("Error fetching students."));
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -45,6 +49,14 @@ export default function MyStudents() {
     setFilteredStudents(filtered);
     setNoMatch(filtered.length === 0);
   };
+
+  if(loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 p-8">
+        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
+      </div>
+    );
+  }
 
   if(students.length === 0) {
     return (
