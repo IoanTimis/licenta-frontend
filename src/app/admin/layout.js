@@ -11,6 +11,7 @@ import { ErrorProvider } from "@/context/errorContext";
 import ErrorDiv from "@/app/components/general/error-div";
 import { useState } from "react";
 
+
 export default function AdminLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname() || "";
