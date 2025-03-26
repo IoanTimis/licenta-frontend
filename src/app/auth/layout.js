@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import jwtDecode from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 export default function AuthGuardLayout({ children }) {
   console.log("AuthGuardLayout");
