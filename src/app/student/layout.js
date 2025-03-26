@@ -6,9 +6,11 @@ import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
 import { useState } from "react";
+import { useLanguage } from "@/context/Languagecontext";
 
 export default function StudentLayout({ children }) {
   const router = useRouter();
+  const { translate } = useLanguage();
   const pathname = usePathname();
   const [loading, setLoading] = useState(true);
 
