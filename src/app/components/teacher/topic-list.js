@@ -11,7 +11,6 @@ const TopicList = ({ topics, loading, handleEditData, handleAddData, handleOpenC
       try {
         const response = await axiosInstance.get("/teacher/api/only-teachers", { withCredentials: true });
         setOnlyTeacher(response.data.onlyTeacher);
-        console.log("ONLYTEACHER setting:", response.data.onlyTeacher);
       } catch (error) {
         console.error("Error fetching ONLYTEACHER setting:", error);
       }
