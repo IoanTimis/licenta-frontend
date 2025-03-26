@@ -9,10 +9,12 @@ import { store, persistor } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
 import { ErrorProvider } from "@/context/errorContext";
 import ErrorDiv from "@/app/components/general/error-div";
+import { useState } from "react";
 
 export default function AdminLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname() || "";
+  const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -32,6 +34,8 @@ export default function AdminLayout({ children }) {
         return;
       }
 
+      setLoading(false);
+
     } catch (error) {
       console.error("Invalid token:", error);
       localStorage.removeItem("accessToken");
@@ -40,6 +44,10 @@ export default function AdminLayout({ children }) {
       return;
     }
   }, [router]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Provider store={store}>
