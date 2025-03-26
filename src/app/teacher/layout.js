@@ -34,9 +34,6 @@ export default function TeacherLayout({ children }) {
 
     } catch (error) {
       console.error("Invalid token:", error);
-      localStorage.removeItem("accessToken");
-      store.dispatch(clearUser());
-      router.push("/auth/login");
     } 
     
   }, [router]);
