@@ -1,10 +1,12 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
+import { useState } from "react";
+
 
 export default function StudentLayout({ children }) {
   const router = useRouter();
@@ -15,8 +17,8 @@ export default function StudentLayout({ children }) {
     const accessToken = localStorage.getItem("accessToken");
 
     if (!accessToken) {
+      router.push("/auth/login"); 
       localStorage.setItem("lastAttemptedPath", pathname);
-      router.push("/auth/login");
       return;
     }
 
@@ -25,26 +27,22 @@ export default function StudentLayout({ children }) {
 
       console.log("Decoded token:", decoded);
 
-      if (decoded.role !== "student") {
-        console.log("Nu ai acces la această pagină, rolul tău este:", decoded.role);
-        router.push(`/${decoded.role}`);
-        return; // oprește execuția aici
+      if (decoded.role !== "student") { 
+        console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
+        router.push(`/${decoded.role}`); 
       }
 
     } catch (error) {
-      console.error("Token invalid:", error);
+      console.error("Invalid token:", error);
       localStorage.removeItem("accessToken");
       store.dispatch(clearUser());
-      router.push("/auth/login");
-      return;
-    }
-
-    // Dacă totul e OK, se ajunge aici
+      router.push("/auth/login"); 
+    } 
+    
     setLoading(false);
+  }, [router]);
 
-  }, [router, pathname]);
-
-  if (loading) return null; // sau spinner
+  if (loading) return <div>Se încarcă...</div>
 
   return (
     <div>

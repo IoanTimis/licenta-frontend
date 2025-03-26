@@ -1,13 +1,13 @@
-// src/hooks/useRoleGuard.js
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
+import { useState } from "react";
 
-export function useRoleGuard(requiredRole) {
+export default function TeacherLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
   const [loading, setLoading] = useState(true);
@@ -17,29 +17,33 @@ export function useRoleGuard(requiredRole) {
 
     if (!accessToken) {
       localStorage.setItem("lastAttemptedPath", pathname);
-      router.push("/auth/login");
+      router.push("/auth/login"); 
       return;
     }
 
     try {
       const decoded = jwtDecode(accessToken);
 
-      if (decoded.role !== requiredRole) {
-        console.warn(`Nu ai acces la această pagină. Rolul tău este: ${decoded.role}`);
+      if (decoded.role !== "teacher") {
+        console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
         router.push(`/${decoded.role}`);
-        return;
       }
 
     } catch (error) {
-      console.error("Token invalid:", error);
+      console.error("Invalid token:", error);
       localStorage.removeItem("accessToken");
       store.dispatch(clearUser());
-      router.push("/auth/login");
-      return;
-    }
-
+      router.push("/auth/login"); 
+    } 
+    
     setLoading(false);
-  }, [router, pathname, requiredRole]);
+  }, [router]);
 
-  return loading;
+  if (loading) return <div>Se încarcă...</div>
+
+  return (
+    <div>
+      <div className="teacher-container">{children}</div>
+    </div>
+  );
 }
