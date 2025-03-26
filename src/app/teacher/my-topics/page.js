@@ -245,10 +245,10 @@ export default function TeacherTopics() {
     }
   };
 
-  if(topics.length === 0) {
+  if(loading) {
     return (
       <div className="min-h-screen bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("You didn't add any themes yet.")}</h1>
+        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
       </div>
     );
   }
@@ -259,7 +259,6 @@ export default function TeacherTopics() {
 
      <TopicList 
       topics={filteredTopics.length > 0 ? filteredTopics : topics}
-      loading={loading}
       handleOpenConfirmModal={handleOpenConfirmModal}
       setIsModalOpen={setIsModalOpen}
       setFormMode={setFormMode}
