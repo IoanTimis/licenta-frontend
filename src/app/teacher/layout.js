@@ -5,12 +5,10 @@ import { useRouter, usePathname } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
-import { useState } from "react";
 
 export default function TeacherLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -27,6 +25,7 @@ export default function TeacherLayout({ children }) {
       if (decoded.role !== "teacher") {
         console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
         router.push(`/${decoded.role}`);
+        return;
       }
 
     } catch (error) {
@@ -36,10 +35,7 @@ export default function TeacherLayout({ children }) {
       router.push("/auth/login"); 
     } 
     
-    setLoading(false);
   }, [router]);
-
-  if (loading) return <div>Se încarcă...</div>
 
   return (
     <div>

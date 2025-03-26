@@ -5,13 +5,10 @@ import { useRouter, usePathname } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
-import { useState } from "react";
-
 
 export default function StudentLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -33,8 +30,6 @@ export default function StudentLayout({ children }) {
         return;
       }
 
-      setLoading(false);
-
     } catch (error) {
       console.error("Invalid token:", error);
       localStorage.removeItem("accessToken");
@@ -43,8 +38,6 @@ export default function StudentLayout({ children }) {
     } 
     
   }, [router]);
-
-  if (loading) return <div>Se încarcă...</div>
 
   return (
     <div>
