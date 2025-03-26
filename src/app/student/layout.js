@@ -30,7 +30,10 @@ export default function StudentLayout({ children }) {
       if (decoded.role !== "student") { 
         console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
         router.push(`/${decoded.role}`); 
+        return;
       }
+
+      setLoading(false);
 
     } catch (error) {
       console.error("Invalid token:", error);
@@ -39,7 +42,6 @@ export default function StudentLayout({ children }) {
       router.push("/auth/login"); 
     } 
     
-    setLoading(false);
   }, [router]);
 
   if (loading) return <div>Se încarcă...</div>
