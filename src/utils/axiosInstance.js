@@ -3,8 +3,10 @@ import {store, persistor} from "@/store/page";
 import { setUser, clearUser } from "@/store/features/user/userSlice";
 import { jwtDecode } from "jwt-decode";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 const axiosInstance = axios.create({
-  baseURL: "https://licenta-backend-production.up.railway.app",
+  baseURL: apiUrl,
   withCredentials: true,
 });
 
