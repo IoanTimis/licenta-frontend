@@ -15,7 +15,8 @@ import { useState } from "react";
 export default function AdminLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname() || "";
-  const [loading, setLoading] = useState(true);
+  const [redirecting, setRedirecting] = useState(false);
+  const [checking, setChecking] = useState(true);
 
   useLayoutEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -30,11 +31,11 @@ export default function AdminLayout({ children }) {
 
       if (decoded.role !== "admin") {
         console.log("Nu ai acces la această pagină, rolul tău este: ", decoded.role);
+        setRedirecting(true);
         router.push(`/${decoded.role}`);
       }
 
-      setLoading(false);
-
+      setChecking(false);
     } catch (error) {
       console.error("Invalid token:", error);
       localStorage.removeItem("accessToken");
@@ -43,13 +44,9 @@ export default function AdminLayout({ children }) {
     }
   }, [router]);
 
-  // if (loading) {
-  //   return (
-  //     <div className="min-h-screen bg-gray-100 p-8">
-  //       <h1 className="text-2xl font-bold text-center text-gray-700">{"Se încarcă..."}</h1>
-  //     </div>
-  //   );
-  // }
+  if (redirecting || checking) {
+    return null;
+  }
 
   return (
     <Provider store={store}>

@@ -10,7 +10,8 @@ import { useState } from "react";
 export default function TeacherLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [loading, setLoading] = useState
+  const [redirecting, setRedirecting] = useState(false);
+  const [checking, setChecking] = useState(true);
 
   useLayoutEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -25,10 +26,11 @@ export default function TeacherLayout({ children }) {
 
       if (decoded.role !== "teacher") {
         console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
+        setRedirecting(true);
         router.push(`/${decoded.role}`);
       }
 
-      setLoading(false);
+      setChecking(false);
 
     } catch (error) {
       console.error("Invalid token:", error);
@@ -39,12 +41,8 @@ export default function TeacherLayout({ children }) {
     
   }, [router]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-700">"Loading..."</h1>
-      </div>
-    );
+  if (redirecting || checking) {
+    return null;
   }
 
   return (

@@ -17,7 +17,7 @@ export default function AuthGuardLayout({ children }) {
         const decoded = jwtDecode(accessToken);
         if (decoded?.role) {
           console.log("Ești deja logat, redirect...");
-          setRedirecting(true); // oprește randarea
+          setRedirecting(true); 
           router.push(`/${decoded.role}`);
         }
       } catch (e) {
@@ -29,7 +29,7 @@ export default function AuthGuardLayout({ children }) {
   }, [router]);
 
   if (redirecting || checking) {
-    return null; // sau un loader temporar
+    return null;
   }
 
   return <>{children}</>;
