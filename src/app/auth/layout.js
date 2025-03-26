@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import {jwtDecode} from "jwt-decode";
 
 export default function AuthGuardLayout({ children }) {
-  console.log("AuthGuardLayout");
   const router = useRouter();
 
   useEffect(() => {
@@ -15,7 +14,7 @@ export default function AuthGuardLayout({ children }) {
       try {
         const decoded = jwtDecode(accessToken);
         if (decoded?.role) {
-          console.log("Decoded token:", decoded);
+          console.log("Esti deja logat");
           router.push(`/${decoded.role}`);
         } else {
           router.push("/");

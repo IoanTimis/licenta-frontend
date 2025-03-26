@@ -5,10 +5,13 @@ import { useRouter, usePathname } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
+import { useState } from "react";
+
 
 export default function StudentLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
+  const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -25,8 +28,7 @@ export default function StudentLayout({ children }) {
       console.log("Decoded token:", decoded);
 
       if (decoded.role !== "student") { 
-        console.error("Invalid role:", decoded.role);
-        alert("Acces interzis");
+        console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
         router.push(`/${decoded.role}`); 
       }
 
@@ -35,8 +37,14 @@ export default function StudentLayout({ children }) {
       localStorage.removeItem("accessToken");
       store.dispatch(clearUser());
       router.push("/auth/login"); 
+    } finally {
+      setLoading(false);
     }
   }, [router]);
+
+  if (loading) {
+    return <div></div>;
+  }
 
   return (
     <div>
