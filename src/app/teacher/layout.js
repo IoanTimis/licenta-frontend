@@ -6,11 +6,9 @@ import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
 import { useState } from "react";
-import { useLanguage } from "@/context/Languagecontext";
 
 export default function TeacherLayout({ children }) {
   const router = useRouter();
-  const { translate } = useLanguage();
   const pathname = usePathname();
   const [loading, setLoading] = useState
 
@@ -20,7 +18,6 @@ export default function TeacherLayout({ children }) {
     if (!accessToken) {
       localStorage.setItem("lastAttemptedPath", pathname);
       router.push("/auth/login"); 
-      return;
     }
 
     try {
@@ -47,7 +44,7 @@ export default function TeacherLayout({ children }) {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
+        <h1 className="text-2xl font-bold text-center text-gray-700">"Loading..."</h1>
       </div>
     );
   }

@@ -6,11 +6,9 @@ import { jwtDecode } from "jwt-decode";
 import { store } from "@/store/page";
 import { clearUser } from "@/store/features/user/userSlice";
 import { useState } from "react";
-import { useLanguage } from "@/context/Languagecontext";
 
 export default function StudentLayout({ children }) {
   const router = useRouter();
-  const { translate } = useLanguage();
   const pathname = usePathname();
   const [loading, setLoading] = useState(true);
 
@@ -46,13 +44,13 @@ export default function StudentLayout({ children }) {
     
   }, [router]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen bg-gray-100 p-8">
+  //       <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>

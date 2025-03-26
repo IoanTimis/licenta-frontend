@@ -18,7 +18,6 @@ export default function AuthGuardLayout({ children }) {
         if (decoded?.role) {
           console.log("Ești deja logat, redirect...");
           router.push(`/${decoded.role}`);
-          return;
         }
 
         setLoading(false);

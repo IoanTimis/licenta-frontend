@@ -32,7 +32,6 @@ export default function AdminLayout({ children }) {
       if (decoded.role !== "admin") {
         console.log("Nu ai acces la această pagină, rolul tău este: ", decoded.role);
         router.push(`/${decoded.role}`);
-        return null;
       }
 
       setLoading(false);
