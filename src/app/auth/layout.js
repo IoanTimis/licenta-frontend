@@ -24,19 +24,10 @@ export default function AuthGuardLayout({ children }) {
 
       } catch (e) {
         console.error("Token invalid:", e);
-        return;
       }
     }
 
   }, [router]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
-      </div>
-    );
-  }
 
   return <>{children}</>;
 }

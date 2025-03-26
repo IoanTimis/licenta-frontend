@@ -18,7 +18,6 @@ export default function StudentLayout({ children }) {
     if (!accessToken) {
       router.push("/auth/login"); 
       localStorage.setItem("lastAttemptedPath", pathname);
-      return;
     }
 
     try {
@@ -29,7 +28,6 @@ export default function StudentLayout({ children }) {
       if (decoded.role !== "student") { 
         console.log("Nu ai acces la aceasta pagina, rolul tau este: ", decoded.role);
         router.push(`/${decoded.role}`); 
-        return;
       }
 
       setLoading(false);
@@ -39,7 +37,6 @@ export default function StudentLayout({ children }) {
       localStorage.removeItem("accessToken");
       store.dispatch(clearUser());
       router.push("/auth/login");
-      return; 
     } 
     
   }, [router]);

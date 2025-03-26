@@ -23,7 +23,6 @@ export default function AdminLayout({ children }) {
     if (!accessToken) {
       localStorage.setItem("lastAttemptedPath", pathname);
       router.push("/auth/login");
-      return null;
     }
 
     try {
