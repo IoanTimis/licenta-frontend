@@ -25,7 +25,7 @@ export default function AppProvider({ children }) {
     }
   };
 
-  if (pathname.startsWith("/admin")) {
+  if (pathname.startsWith("/admin") || pathname === "/not-found" || pathname === "/404") {
     return <>{children}</>;
   }
 
