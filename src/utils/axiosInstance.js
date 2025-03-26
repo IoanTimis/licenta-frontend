@@ -50,9 +50,9 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
-        localStorage.removeItem("accessToken");
-        store.dispatch(clearUser());
-        window.location.href = "/auth/login";
+        //localStorage.removeItem("accessToken");
+        //store.dispatch(clearUser());
+        //window.location.href = "/auth/login";
         return Promise.reject(refreshError);
       }
     }
