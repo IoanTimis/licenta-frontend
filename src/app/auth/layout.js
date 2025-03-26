@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import jwtDecode from "jwt-decode";
 
 export default function AuthGuardLayout({ children }) {
+  console.log("AuthGuardLayout");
   const router = useRouter();
 
   useEffect(() => {
