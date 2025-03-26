@@ -1,3 +1,5 @@
+"use client";
+
 import { jwtDecode } from "jwt-decode";
 import { useLanguage } from "@/context/Languagecontext";
 import Link from "next/link";
