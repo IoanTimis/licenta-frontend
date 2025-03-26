@@ -17,12 +17,14 @@ export default function StudentTopics() {
   const { translate } = useLanguage();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const [newRequestedTopic, setNewRequestedTopic] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [topics, setTopics] = useState([]);
 
   // Fetch data from the server
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axiosInstance.get("/student/fetch/favorite-topics", { withCredentials: true });
 
@@ -31,6 +33,8 @@ export default function StudentTopics() {
       } catch (error) {
         console.error("Error fetching topics:", error);
         setGlobalErrorMessage(translate("An error occurred while fetching topics. Please try again."));
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -106,6 +110,14 @@ export default function StudentTopics() {
       setGlobalErrorMessage(translate("An error occurred while sending the request. Please try again."));
     }
   };
+
+  if(loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 p-8">
+        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
+      </div>
+    );
+  }
   
   if(topics.length === 0) {
     return <div className="flex items-center justify-center h-screen">{translate("No themes added to favorites.")}</div>;
@@ -117,6 +129,7 @@ export default function StudentTopics() {
         {/* Topics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-4">
           {topics.map((topic) => (
+
             <TopicCard
               key={topic.id}
               topic={topic}

@@ -144,6 +144,14 @@ export default function StudentRequests() {
     setNoMatch(filtered.length === 0);
   };
 
+  if(loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 p-8">
+        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("Loading...")}</h1>
+      </div>
+    );
+  }
+
   if(requests.length === 0) {
     return (
       <div className="min-h-screen bg-gray-100 p-8">
