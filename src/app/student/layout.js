@@ -34,7 +34,8 @@ export default function StudentLayout({ children }) {
       console.error("Invalid token:", error);
       localStorage.removeItem("accessToken");
       store.dispatch(clearUser());
-      router.push("/auth/login"); 
+      router.push("/auth/login");
+      return; 
     } 
     
   }, [router]);

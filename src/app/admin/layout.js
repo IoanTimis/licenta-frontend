@@ -28,8 +28,8 @@ export default function AdminLayout({ children }) {
 
       if (decoded.role !== "admin") {
         console.log("Nu ai acces la această pagină, rolul tău este: ", decoded.role);
-        alert("Acces interzis");
         router.push(`/${decoded.role}`);
+        return;
       }
 
     } catch (error) {
@@ -37,6 +37,7 @@ export default function AdminLayout({ children }) {
       localStorage.removeItem("accessToken");
       store.dispatch(clearUser());
       router.push("/auth/login");
+      return;
     }
   }, [router]);
 

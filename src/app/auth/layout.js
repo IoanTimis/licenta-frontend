@@ -20,6 +20,7 @@ export default function AuthGuardLayout({ children }) {
         }
       } catch (e) {
         console.error("Token invalid:", e);
+        return;
       }
     }
 
