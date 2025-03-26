@@ -46,13 +46,13 @@ export default function AdminLayout({ children }) {
     }
   }, [router]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-100 p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-700">{"Se încarcă..."}</h1>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen bg-gray-100 p-8">
+  //       <h1 className="text-2xl font-bold text-center text-gray-700">{"Se încarcă..."}</h1>
+  //     </div>
+  //   );
+  // }
 
   return (
     <Provider store={store}>
