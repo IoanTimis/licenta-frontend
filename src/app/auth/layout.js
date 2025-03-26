@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {jwtDecode} from "jwt-decode";
-import { useState } from "react";
-
+import { jwtDecode } from "jwt-decode";
 
 export default function AuthGuardLayout({ children }) {
   const router = useRouter();
@@ -17,22 +15,21 @@ export default function AuthGuardLayout({ children }) {
       try {
         const decoded = jwtDecode(accessToken);
         if (decoded?.role) {
-          console.log("Esti deja logat");
+          console.log("Ești deja logat, redirect...");
           router.push(`/${decoded.role}`);
-        } else {
-          router.push("/");
+          return; // nu continua
         }
       } catch (e) {
-        console.error("Invalid token:", e);
-      } finally {
-        setLoading(false);
+        console.error("Token invalid:", e);
       }
     }
+
+    // dacă NU există token sau e invalid
+    setLoading(false);
   }, [router]);
 
-  if (loading) {
-    return <div></div>;
-  }
+  if (loading) return <div>Se încarcă...</div>
+
 
   return <>{children}</>;
 }
