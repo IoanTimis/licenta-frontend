@@ -23,7 +23,7 @@ export default function AdminLayout({ children }) {
     if (!accessToken) {
       localStorage.setItem("lastAttemptedPath", pathname);
       router.push("/auth/login");
-      return;
+      return null;
     }
 
     try {
@@ -32,7 +32,7 @@ export default function AdminLayout({ children }) {
       if (decoded.role !== "admin") {
         console.log("Nu ai acces la această pagină, rolul tău este: ", decoded.role);
         router.push(`/${decoded.role}`);
-        return;
+        return null;
       }
 
       setLoading(false);
@@ -42,7 +42,6 @@ export default function AdminLayout({ children }) {
       localStorage.removeItem("accessToken");
       store.dispatch(clearUser());
       router.push("/auth/login");
-      return;
     }
   }, [router]);
 
