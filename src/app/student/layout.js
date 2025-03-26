@@ -10,7 +10,7 @@ import { useState } from "react";
 export default function StudentLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
-  cosnt [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     const accessToken = localStorage.getItem("accessToken");

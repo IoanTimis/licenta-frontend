@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="max-w-lg">
         <h1 className="text-5xl font-extrabold text-purple-600 mb-4">404</h1>
         <p className="text-xl font-semibold text-gray-800 mb-2">
-          {translate("Page not found")}Pagina nu a fost găsită / Page not found
+          {translate("Page not found")}
         </p>
         <p className="text-gray-700 mb-6">
           {translate("The page you are looking for does not exist, use the links below to navigate back.")}
