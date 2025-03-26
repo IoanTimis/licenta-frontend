@@ -1,23 +1,10 @@
 "use client";
 
-import { jwtDecode } from "jwt-decode";
 import { useLanguage } from "@/context/Languagecontext";
 import Link from "next/link";
 
 export default function NotFound() {
   const { translate } = useLanguage();
-  const role = jwtDecode(localStorage.getItem("token")).role || null;
-  let link = "/";
-
-  if(role){
-    if(role === "admin") {
-      link = "/admin";
-    } else if(role === "teacher") {
-      link = "/teacher";
-    } else if(role === "student") {
-      link = "/student";
-    }
-  }
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 px-4 text-center">
@@ -29,7 +16,7 @@ export default function NotFound() {
         <p className="text-gray-700 mb-6">
           {translate("The page you are looking for does not exist, use the links below to navigate back.")}
         </p>
-        <Link href={link}>
+        <Link href={"/student"}>
           <a className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700">
             {translate("Go back")}
           </a>
