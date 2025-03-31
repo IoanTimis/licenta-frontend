@@ -12,7 +12,6 @@ import { setRequests, addRequest, updateRequest, deleteRequest, setFilteredReque
 import { useDispatch, useSelector } from "react-redux";
 import { BuildEmailData } from "@/utils/buildEmailData";
 import { sendEmail } from "@/app/api/sendEmail/page";
-import { useSelector } from "react-redux";
 
 export default function StudentRequests() {
   const requests = useSelector((state) => state.requests.list);
