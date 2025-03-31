@@ -28,11 +28,9 @@ export default function FixedSidebar() {
     try {
       await axios.get(`${apiUrl}/logout`, { withCredentials: true });
 
-      router.push("/auth/login").then(() => {
-        dispatch(clearUser());
-        localStorage.removeItem("accessToken");
-        console.log("Logout successful");
-      });
+      dispatch(clearUser());
+      localStorage.removeItem("accessToken");
+      console.log("Logout reușit");
 
       router.push("/auth/login");
     } catch (error) {

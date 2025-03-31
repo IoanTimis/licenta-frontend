@@ -31,11 +31,10 @@ export default function TeacherNavBar() {
     try {
       await axios.get(`${apiUrl}/logout`, { withCredentials: true });
 
-      router.push("/auth/login").then(() => {
-        dispatch(clearUser());
-        localStorage.removeItem("accessToken");
-        console.log("Logout successful");
-      });
+      router.push("/auth/login");
+      dispatch(clearUser());
+      localStorage.removeItem("accessToken");
+      console.log("Logout successful");
 
     } catch (error) {
       console.error("Error at logout:", error);
