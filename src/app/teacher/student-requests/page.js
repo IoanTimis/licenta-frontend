@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function StudentRequests() {
   const requests = useSelector((state) => state.requests.list);
   const filteredRequests = useSelector((state) => state.requests.filteredList);
-  const localUser = useSelector((state) => state.user.data.user);
+  const localUser = useSelector((state) => state.user.data?.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [noMatch, setNoMatch] = useState(false);

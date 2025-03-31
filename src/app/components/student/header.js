@@ -33,10 +33,11 @@ export default function studentNavBar() {
     try {
       await axios.get(`${apiUrl}/logout`, { withCredentials: true });
 
-      router.push("/auth/login");
-      dispatch(clearUser());
-      localStorage.removeItem("accessToken");
-      console.log("Logout reusit");
+      router.push("/auth/login").then(() => {
+        dispatch(clearUser());
+        localStorage.removeItem("accessToken");
+        console.log("Logout successful");
+      });
       
     } catch (error) {
       console.error("Logout error:", error);
