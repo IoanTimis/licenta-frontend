@@ -77,9 +77,10 @@ export default function StudentTopics() {
         withCredentials: true,
       });
 
+      const requestId = response.data.request.id;
       const commentMessage = formData.get("message");
 
-      const addComment = await axiosInstance.post(`/student/request/comment/add/${response.data.request.id}`, 
+      const addComment = await axiosInstance.post(`/student/request/comment/add/${requestId}`, 
         { commentMessage }, { withCredentials: true });
 
       if(process.env.NODE_ENV === "production") {
@@ -95,7 +96,8 @@ export default function StudentTopics() {
           actionMakerEmail,
           action,
           language,
-          role
+          role,
+          id:requestId,
         };
 
         const emailData = BuildEmailData(data);
