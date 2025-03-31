@@ -23,7 +23,7 @@ export default function TopicDetails() {
   const [responseModalOpen, setResponseModalOpen] = useState(false);
   const [modalAction, setModalAction] = useState("");
   const [isRequestDeleted, setIsRequestDeleted] = useState(false);
-  const localUser = useSelector((state) => state.user?.data.user);
+  const localUser = useSelector((state) => state.user.data?.user);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const { translate, language } = useLanguage();

@@ -24,7 +24,7 @@ export default function StudentRequests() {
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const { translate, language } = useLanguage();
   const [noMatch, setNoMatch] = useState(false);
-  const localUser = useSelector((state) => state.user?.data.user);
+  const localUser = useSelector((state) => state.user.data?.user);
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   const handleOpenConfirmModal = (requestId, action) => {

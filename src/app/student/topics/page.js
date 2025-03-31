@@ -22,7 +22,7 @@ export default function StudentTopics() {
   const { translate, language } = useLanguage();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const [newRequestedTopic, setNewRequestedTopic] = useState(null);
-  const localUser = useSelector((state) => state.user?.data.user);
+  const localUser = useSelector((state) => state.user.data?.user);
   const topics = useSelector((state) => state.topics.list);
   const filteredTopics = useSelector((state) => state.topics.filteredList);
   const dispatch = useDispatch();

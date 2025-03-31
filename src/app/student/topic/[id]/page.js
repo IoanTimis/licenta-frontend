@@ -22,7 +22,7 @@ export default function TopicDetailsPage() {
   const { translate, language } = useLanguage();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const { id } = useParams();
-  const localUser = useSelector((state) => state.user?.data.user);
+  const localUser = useSelector((state) => state.user.data?.user);
 
   const toggleRequestModal = () => setIsModalOpen((prev) => !prev);
 
