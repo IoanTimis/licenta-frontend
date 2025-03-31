@@ -11,11 +11,11 @@ import CommentInput from "@/app/components/general/comment-input";
 import ProfessorDetails from "@/app/components/general/topic-req-profesor-details";
 import RequestDetails from "@/app/components/general/request-details";
 import TopicDescription from "@/app/components/general/topic-description";
-import { jwtDecode } from "jwt-decode";
 import { ErrorContext } from "@/context/errorContext";
 import { useContext } from "react";
 import { BuildEmailData } from "@/utils/buildEmailData";
 import { sendEmail } from "@/app/api/sendEmail/page";
+import { useSelector } from "react-redux";
 
 export default function TopicDetails() {
   const [request, setRequest] = useState(null);
@@ -23,19 +23,13 @@ export default function TopicDetails() {
   const [responseModalOpen, setResponseModalOpen] = useState(false);
   const [modalAction, setModalAction] = useState("");
   const [isRequestDeleted, setIsRequestDeleted] = useState(false);
-  const [localUser, setLocalUser] = useState(null);
+  const localUser = useSelector((state) => state.user?.data.user);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const { translate, language } = useLanguage();
   const { id } = useParams();
   const [commentMessage, setCommentMessage] = useState("");
   const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    const decodedToken = jwtDecode(accessToken);
-    setLocalUser(decodedToken);
-  }, []);
 
   const toggleResponseModal = () => {
     setResponseModalOpen((prev) => !prev);

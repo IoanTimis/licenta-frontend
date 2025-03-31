@@ -10,9 +10,9 @@ import { useContext } from "react";
 import ProfessorDetails from "@/app/components/general/topic-req-profesor-details";
 import TopicDescription from "@/app/components/general/topic-description";
 import TopicDetails from "@/app/components/general/topic-details";
-import { jwtDecode } from "jwt-decode";
 import { BuildEmailData } from "@/utils/buildEmailData";
 import { sendEmail } from "@/app/api/sendEmail/page";
+import { useSelector } from "react-redux";
 
 export default function TopicDetailsPage() {
   const [topic, setTopic] = useState(null);
@@ -22,15 +22,9 @@ export default function TopicDetailsPage() {
   const { translate, language } = useLanguage();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const { id } = useParams();
-  const [localUser, setLocalUser] = useState(null);
+  const localUser = useSelector((state) => state.user?.data.user);
 
   const toggleRequestModal = () => setIsModalOpen((prev) => !prev);
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    const decodedToken = jwtDecode(accessToken);
-    setLocalUser(decodedToken);
-  }, []);
 
   // Fetch topic details
   useEffect(() => {

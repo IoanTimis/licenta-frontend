@@ -12,7 +12,7 @@ import { setRequests, addRequest, updateRequest, deleteRequest, setFilteredReque
 import { useDispatch, useSelector } from "react-redux";
 import { BuildEmailData } from "@/utils/buildEmailData";
 import { sendEmail } from "@/app/api/sendEmail/page";
-import { jwtDecode } from "jwt-decode";
+import { useSelector } from "react-redux";
 
 export default function StudentRequests() {
   const requests = useSelector((state) => state.requests.list);
@@ -25,7 +25,7 @@ export default function StudentRequests() {
   const { setGlobalErrorMessage } = useContext(ErrorContext);
   const { translate, language } = useLanguage();
   const [noMatch, setNoMatch] = useState(false);
-  const localUser = useSelector((state) => state.user.data.user);
+  const localUser = useSelector((state) => state.user?.data.user);
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   const handleOpenConfirmModal = (requestId, action) => {

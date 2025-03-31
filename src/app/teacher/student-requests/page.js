@@ -10,7 +10,6 @@ import ConfirmActionModal from "@/app/components/general/confirm-action-modal";
 import { ErrorContext } from "@/context/errorContext";
 import { useContext } from "react";
 import { sendEmail } from "@/app/api/sendEmail/page"; 
-import { jwtDecode } from "jwt-decode";
 import { BuildEmailData } from "@/utils/buildEmailData";
 import { setRequests, addRequest, updateRequest, deleteRequest, setFilteredRequests } from "@/store/features/requests/requestSlice";
 import { useDispatch, useSelector } from "react-redux";

@@ -14,12 +14,12 @@ import { ErrorContext } from "@/context/errorContext";
 import { useContext } from "react";
 import { BuildEmailData } from "@/utils/buildEmailData";
 import { sendEmail } from "@/app/api/sendEmail/page";
-import { jwtDecode } from "jwt-decode";
+import { useSelector } from "react-redux";
 
 export default function RequestTopicDetails() {
   const [request, setRequest] = useState(null);
   const [isRequestDeleted, setIsRequestDeleted] = useState(false);
-  const [localUser, setLocalUser] = useState(null);
+  const localUser = useSelector((state) => state.user.data?.user);
   const [isOpen, setIsOpen] = useState(false);
   const [modalAction, setModalAction] = useState("");
   const { translate, language } = useLanguage();
@@ -34,12 +34,6 @@ export default function RequestTopicDetails() {
     setModalAction(action);
     setIsOpen(true);
   };
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    const decodedToken = jwtDecode(accessToken);
-    setLocalUser(decodedToken);
-  }, []);
 
   // Fetch topic details
   useEffect(() => {
