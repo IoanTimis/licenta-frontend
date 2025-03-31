@@ -8,8 +8,8 @@ import { ErrorContext } from "@/context/errorContext";
 import { useContext } from "react";
 import { useLanguage } from "@/context/Languagecontext";
 import { useSelector } from "react-redux";
-// import { BuildEmailData } from "@/utils/buildEmailData";
-// import { sendEmail } from "@/app/api/sendEmail/page";
+import { BuildEmailData } from "@/utils/buildEmailData";
+import { sendEmail } from "@/app/api/sendEmail/page";
 
 export default function StudentTopics() {
   const [isModalOpen, setIsModalOpen] = useState(false);
