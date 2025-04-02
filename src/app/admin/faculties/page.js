@@ -56,7 +56,7 @@ export default function AdminFacultiesPage() {
 
   const deleteFaculty = async (faculty) => {
     try {
-      await axiosInstance.delete(`${apiUrl}/auth/google/admin/faculty/delete/${faculty.id}`, { withCredentials: true });
+      await axiosInstance.delete(`${apiUrl}/auth/faculty/delete/${faculty.id}`, { withCredentials: true });
       fetchFaculties();
     } catch (error) {
       console.error("Delete faculty error:", error);
