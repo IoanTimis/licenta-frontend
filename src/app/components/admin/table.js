@@ -53,26 +53,26 @@ export default function Table({ data, columns, actions }) {
               <tr key={rowIndex} className="border-b border-gray-900">
                 {columns.map((col) => (
                   <td key={col.key} className="px-4 py-2 text-black whitespace-nowrap">
-                    {col.key === "description" ? (
-                      <>
-                        {row[col.key]?.length > 50 ? (
-                          <>
-                            {row[col.key].slice(0, 50)}...
-                            <button
-                              className="text-blue-500 underline ml-2"
-                              onClick={() => setModalContent(row[col.key])}
-                            >
-                              Vezi mai mult
-                            </button>
-                          </>
-                        ) : (
-                          row[col.key]
-                        )}
-                      </>
-                    ) : (
-                      row[col.key]
-                    )}
-                  </td>
+                  {col.key === "description" ? (
+                    <>
+                      {row[col.key]?.length > 50 ? (
+                        <>
+                          {row[col.key].slice(0, 50)}...
+                          <button
+                            className="text-blue-500 underline ml-2"
+                            onClick={() => setModalContent(row[col.key])}
+                          >
+                            Vezi mai mult
+                          </button>
+                        </>
+                      ) : (
+                        row[col.key]
+                      )}
+                    </>
+                  ) : (
+                    typeof row[col.key] === "boolean" ? (row[col.key] ? "Da" : "Nu") : row[col.key]
+                  )}
+                </td>                
                 ))}
                 {actions && (
                   <td className="px-4 py-2 flex space-x-2 whitespace-nowrap">
