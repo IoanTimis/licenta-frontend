@@ -126,7 +126,11 @@ export default function StudentTopics() {
   }
   
   if(topics.length === 0) {
-    return <div className="flex items-center justify-center h-screen">{translate("No themes added to favorites.")}</div>;
+    return (
+      <div className="min-h-screen bg-gray-100 p-8">
+        <h1 className="text-2xl font-bold text-center text-gray-700">{translate("No themes added to favorites.")}</h1>
+      </div>
+    );
   }
 
   return (
