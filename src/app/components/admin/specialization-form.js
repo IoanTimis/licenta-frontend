@@ -4,6 +4,7 @@ import { useState } from "react";
 import axiosInstance from "@/utils/axiosInstance";
 
 export default function SpecializationForm({ specialization, onClose, onSave, faculties }) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [facultyId, setFacultyId] = useState(specialization?.faculty_id || "");
   const [name, setName] = useState(specialization?.name || "");
   const [description, setDescription] = useState(specialization?.description || "");
