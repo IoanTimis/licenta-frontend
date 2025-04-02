@@ -58,7 +58,7 @@ export default function AdminUsersPage() {
 
   const deleteUser = async (user) => {
     try {
-      await axiosInstance.delete(`${apiUrl}admin/user/delete/${user.id}`, { withCredentials: true });
+      await axiosInstance.delete(`${apiUrl}/admin/user/delete/${user.id}`, { withCredentials: true });
       fetchUsers();
     } catch (error) {
       console.error("Delete user error:", error);
