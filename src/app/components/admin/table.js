@@ -5,7 +5,7 @@ export default function Table({ data, columns, actions }) {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [modalContent, setModalContent] = useState(null);
 
-  consolest.log("Table data:", data);
+  console.log("Table data:", data);
 
   if (!data || data.length === 0) {
     return <p className="text-gray-500 text-center">Nu există date disponibile.</p>;
