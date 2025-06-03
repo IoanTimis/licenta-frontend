@@ -103,27 +103,27 @@ export default function TeacherNavBar() {
                 </div>
               </Link>
               <Link
-                href="/teacher/my-topics"
+                href="/teacher/topics"
                 className={`text-white hover:text-black px-3 py-2 text-sm font-medium 
-                  ${pathname === "/teacher/my-topics" ? "border-b border-white" : ""}`}
+                  ${pathname === "/teacher/topics" ? "border-b border-white" : ""}`}
               >
                 <div className="flex items-center space-x-2">
                   <span className="h-6 w-6">
                     <AcademicCapIcon />
                   </span>
-                  <span>{translate("My Themes")}</span>
+                  <span>{translate("Themes")}</span>
                 </div>
               </Link>
               <Link
-                href="/teacher/student-requests"
+                href="/teacher/requests"
                 className={`text-white hover:text-black px-3 py-2 text-sm font-medium 
-                  ${pathname === "/teacher/student-requests" ? "border-b border-white" : ""}`}
+                  ${pathname === "/teacher/requests" ? "border-b border-white" : ""}`}
               >
                 <div className="flex items-center space-x-2">
                   <span className="h-6 w-6">
                     <NewspaperIcon />
                   </span>
-                  <span>{translate("Student Requests")}</span>
+                  <span>{translate("Requests")}</span>
                 </div>
               </Link>
               <Link
@@ -221,27 +221,27 @@ export default function TeacherNavBar() {
               </div>
             </Link>
             <Link
-              href="/teacher/my-topics"
+              href="/teacher/topics"
               className={`text-white block px-3 py-2 text-base font-medium 
-                ${pathname === "/teacher/my-topics" ? "border-b border-white" : ""}`}
+                ${pathname === "/teacher/topics" ? "border-b border-white" : ""}`}
             >
               <div className="flex items-center space-x-2">
                 <span className="h-6 w-6">
                   <AcademicCapIcon />
                 </span>
-                <span>{translate("My Themes")}</span>
+                <span>{translate("Themes")}</span>
               </div>
             </Link>
             <Link
-              href="/teacher/student-requests"
+              href="/teacher/requests"
               className={`text-white block px-3 py-2 text-base font-medium 
-                ${pathname === "/teacher/student-requests" ? "border-b border-white" : ""}`}
+                ${pathname === "/teacher/requests" ? "border-b border-white" : ""}`}
             >
               <div className="flex items-center space-x-2">
                 <span className="h-6 w-6">
                   <NewspaperIcon />
                 </span>
-                <span>{translate("Student Requests")}</span>
+                <span>{translate("Requests")}</span>
               </div>
             </Link>
             <Link

@@ -19,8 +19,8 @@ export default function RequestCard({ request, onResponse, handleOpenConfirmModa
   const requestStatus = request.status;
   
   const topicLink = userRole === "student"
-    ? `/student/my-request/${request.id}`
-    : `/teacher/student-request/${request.id}`;
+    ? `/student/request/${request.id}`
+    : `/teacher/request/${request.id}`;
 
   return (
     <div className="bg-white shadow rounded transform border border-gray-950

@@ -123,13 +123,13 @@ export default function studentNavBar() {
                 </div>
               </Link>
               <Link
-                href="/student/my-requests"
+                href="/student/requests"
                 className={`text-white hover:text-black px-3 py-2 text-sm font-medium 
-                  ${pathname === "/student/my-requests" ? "border-b border-white" : ""}`}
+                  ${pathname === "/student/requests" ? "border-b border-white" : ""}`}
               >
                 <div className="flex items-center space-x-2">
                   <span className="h-6 w-6"><NewspaperIcon/></span>
-                  <span>{ translate("My Requests") }</span>
+                  <span>{ translate("Requests") }</span>
                 </div>
               </Link>
             </div>
@@ -234,13 +234,13 @@ export default function studentNavBar() {
               </div>
             </Link>
             <Link
-              href="/student/my-requests"
+              href="/student/requests"
               className={`text-white block px-3 py-2 text-base font-medium 
-                ${pathname === "/student/my-requests" ? "border-b border-white" : ""}`}
+                ${pathname === "/student/requests" ? "border-b border-white" : ""}`}
             >
               <div className="flex items-center space-x-2">
                 <span className="h-6 w-6"><NewspaperIcon/></span>
-                <span>{ translate("My Requests") }</span>
+                <span>{ translate("Requests") }</span>
               </div>
             </Link>
           </div>

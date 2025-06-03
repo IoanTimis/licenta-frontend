@@ -14,7 +14,7 @@ export default function TopicCard({ topic, translate, onEdit, handleOpenConfirmM
         hover:shadow-xl hover:-translate-y-1 transition-transform duration-200"
     >
       {/* Title */}
-      <Link href={`/teacher/my-topic/${topic.id}`}>
+      <Link href={`/teacher/topic/${topic.id}`}>
         <div className="bg-navbar-gradient flex justify-between items-center py-2 px-4 rounded-t">
           <h2 className="text-lg font-semibold text-white truncate">{topic.title}</h2>
         </div>
