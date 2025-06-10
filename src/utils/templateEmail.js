@@ -15,7 +15,8 @@ export const generateEmailContent = ({
       strongStatus: "Stare:",
       strongMessage: "Mesaj:",
       clickHere: "Click aici",
-      footer: "Mulțumim pentru utilizarea platformei UVT!"
+      footer: "Mulțumim pentru utilizarea platformei UVT!",
+      h2Title: "Email Automat Informativ"
     },
     en: {
       strongTitle: "Theme Title",
@@ -23,7 +24,8 @@ export const generateEmailContent = ({
       strongStatus: "Status:",
       strongMessage: "Message:",
       clickHere: "Click here",
-      footer: "Thank you for using the UVT platform!"
+      footer: "Thank you for using the UVT platform!",
+      h2Title: "Automated Informative Email"
     }
   };
 
@@ -48,7 +50,7 @@ export const generateEmailContent = ({
         color: #007BFF; 
         text-align: center; 
         font-size: 26px;">
-        Email Automat Informativ
+        ${lang.h2Title}
       </h2>
       
       <hr style="margin: 20px 0;">
