@@ -164,7 +164,7 @@ export default function CompleteProfileStudent() {
             type="submit"
             className="w-full bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition"
           >
-            Trimite
+            {translate("Submit")}
           </button>
         </form>
       )}

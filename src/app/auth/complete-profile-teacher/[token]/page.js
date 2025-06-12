@@ -107,7 +107,7 @@ export default function CompleteProfileTeacher() {
             type="submit"
             className="w-full bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition"
           >
-            {translate("Save")}
+            {translate("Submit")}
           </button>
         </form>
       )}
