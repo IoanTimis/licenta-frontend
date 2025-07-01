@@ -8,17 +8,19 @@ const TopicActions = ({toggleConfirmActionModal, translate, role, toggleEditModa
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [onlyTeacher, setOnlyTeacher] = useState(false);
 
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const response = await axiosInstance.get("/teacher/api/only-teachers", { withCredentials: true });
-        setOnlyTeacher(response.data.onlyTeacher);
-      } catch (error) {
-        console.error("Error fetching ONLYTEACHER setting:", error);
-      }
-    };
-    fetchSettings();
-  }, []);
+  if(role == "teacher"){
+    useEffect(() => {
+      const fetchSettings = async () => {
+        try {
+          const response = await axiosInstance.get("/teacher/api/only-teachers", { withCredentials: true });
+          setOnlyTeacher(response.data.onlyTeacher);
+        } catch (error) {
+          console.error("Error fetching ONLYTEACHER setting:", error);
+        }
+      };
+      fetchSettings();
+    }, []);
+  }
 
   return (
     <div className="bg-gray-100 p-6 flex flex-col items-center justify-center relative">
