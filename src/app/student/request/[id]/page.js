@@ -61,6 +61,7 @@ export default function RequestTopicDetails() {
       setRequest({ ...request, status: "confirmed" });
 
       if(process.env.NEXT_PUBLIC_NODE_ENV === "production") {
+        console.log(request.teacher.email, "email");
         const to = request.teacher.email;
         const title = request.topic.title;
         const actionMakerEmail = localUser.email;
@@ -133,7 +134,7 @@ export default function RequestTopicDetails() {
       setCommentMessage("");
 
       if(process.env.NEXT_PUBLIC_NODE_ENV === "production") {
-        const to = request.student.email;
+        const to = request.teacher.email;
         const title = request.topic.title;
         const actionMakerEmail = localUser.email;
         const action = "newComment";
