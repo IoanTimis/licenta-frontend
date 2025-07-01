@@ -1,9 +1,24 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import axiosInstance from "@/utils/axiosInstance";
 import { CheckIcon, EllipsisVerticalIcon, TrashIcon, PencilIcon, NewspaperIcon } from "@heroicons/react/20/solid";
 
 const TopicActions = ({toggleConfirmActionModal, translate, role, toggleEditModal, toggleRequestModal, isRequested, hasConfirmedRequest }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [onlyTeacher, setOnlyTeacher] = useState(false);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await axiosInstance.get("/teacher/api/only-teachers", { withCredentials: true });
+        setOnlyTeacher(response.data.onlyTeacher);
+      } catch (error) {
+        console.error("Error fetching ONLYTEACHER setting:", error);
+      }
+    };
+    fetchSettings();
+  }, []);
 
   return (
     <div className="bg-gray-100 p-6 flex flex-col items-center justify-center relative">
@@ -57,11 +72,12 @@ const TopicActions = ({toggleConfirmActionModal, translate, role, toggleEditModa
                     {translate("Edit")}
                   </button>
                   <button
+                    disabled={!onlyTeacher}
                     onClick={() => {
                       toggleConfirmActionModal("delete");
                       setMenuOpen(false);
                     }}
-                    className="flex items-center p-2 w-full hover:bg-red-100 text-red-600 transition duration-200"
+                    className={`flex items-center p-2 w-full hover:bg-red-100 text-red-600 transition duration-200 ${!onlyTeacher ? "cursor-not-allowed opacity-50" : ""}`}
                   >
                     <TrashIcon className="w-5 h-5 text-red-500 mr-2" />
                     {translate("Delete")}

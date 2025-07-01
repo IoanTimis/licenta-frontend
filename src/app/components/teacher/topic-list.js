@@ -34,12 +34,12 @@ const TopicList = ({ topics, loading, handleEditData, handleAddData, handleOpenC
           <div className={`flex justify-between items-center py-2 px-4 rounded-t 
             ${onlyTeacher ? "bg-navbar-gradient" : "bg-gray-500"}`}>
             <h2 className="text-lg text-white font-semibold">
-              {onlyTeacher ? "Add a new theme" : "You can no longer add topics"}
+              {onlyTeacher ? translate("Add a new theme") : translate("You can no longer add topics")}
             </h2>
           </div>
           <div className="px-4 py-2">
             <p className="text-gray-700">
-              {onlyTeacher ? "Click here to add a new theme" : "Adding topics is now restricted."}
+              {onlyTeacher ? translate("Click here to add a new theme") : translate("Adding topics is now restricted.")}
             </p>
           </div>
           <div className="pb-4">
@@ -50,6 +50,7 @@ const TopicList = ({ topics, loading, handleEditData, handleAddData, handleOpenC
         {/* Topic Cards */}
         {topics.map((topic) => (
           <TopicCard 
+            onlyTeacher={onlyTeacher}
             key={topic.id} 
             topic={topic}  
             translate={translate} 

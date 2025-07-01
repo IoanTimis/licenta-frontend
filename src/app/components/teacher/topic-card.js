@@ -4,9 +4,8 @@ import { useState } from "react";
 import { truncateText } from "@/utils/truncateText";
 import CardDetails from "../general/card-details";
 
-export default function TopicCard({ topic, translate, onEdit, handleOpenConfirmModal }) {
+export default function TopicCard({ topic, translate, onEdit, handleOpenConfirmModal, onlyTeacher }) {
   const [tooltip, setTooltip] = useState(null);
-
 
   return (
     <div 
@@ -52,7 +51,8 @@ export default function TopicCard({ topic, translate, onEdit, handleOpenConfirmM
         >
           <button 
             onClick={() => handleOpenConfirmModal(topic.id, "delete")}
-            className="p-2 bg-red-500 rounded-full hover:bg-red-600 transition text-white"
+            className={`${onlyTeacher ? "p-2 bg-red-500 rounded-full hover:bg-red-600 transition text-white" : "p-2 bg-gray-300 rounded-full cursor-not-allowed"}`}
+            disabled={!onlyTeacher}
           >
             <TrashIcon className="w-5 h-5" />
           </button>
