@@ -16,6 +16,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const { translate } = useLanguage();
   const { setGlobalErrorMessage } = useContext(ErrorContext);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,6 +31,11 @@ const LoginPage = () => {
         { email, password },
         { withCredentials: true } 
       );
+
+      if (response.status === 204) {
+        setErrorMessage("Invalid email or password");
+        return;
+      }
 
       const { accessToken} = response.data;
       const user = jwtDecode(accessToken);
@@ -60,12 +66,18 @@ const LoginPage = () => {
         <h1 className="text-2xl text-black font-bold text-center mb-6">{translate("Login")}</h1>
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
-          <input type="email" id="email" name="email" className="w-full border text-black border-gray-300 rounded-md p-3" required />
+          <input onChange={() => setErrorMessage(null)} type="email" id="email" name="email" className="w-full border text-black border-gray-300 rounded-md p-3" required />
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block text-gray-700 font-medium mb-2">{translate("Password")}</label>
-          <input type="password" id="password" name="password" className="text-black w-full border border-gray-300 rounded-md p-3" required />
+          <input onChange={() => setErrorMessage(null)} type="password" id="password" name="password" className="text-black w-full border border-gray-300 rounded-md p-3" required />
         </div>
+         {/* Error message */}
+          {errorMessage && (
+            <div className="bg-red-100 text-red-800 p-3 rounded-md mb-4 w-full text-center border border-red-300">
+              {errorMessage}
+            </div>
+          )}
         <div className="flex flex-col gap-4">
           <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">{translate("Login")}</button>
           <button type="button" onClick={handleGoogleLogin} className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700">{translate("Google Login")}</button>
